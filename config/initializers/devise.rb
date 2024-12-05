@@ -275,7 +275,9 @@ Devise.setup do |config|
   config.omniauth :google_oauth2,
     ENV["GOOGLE_CLIENT_ID"],
     ENV["GOOGLE_CLIENT_SECRET"],
-    scope: "email,profile,https://www.googleapis.com/auth/drive.file"
+    scope: "email,profile,https://www.googleapis.com/auth/drive.file",
+    access_type: "offline",
+    prompt: "consent"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

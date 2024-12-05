@@ -1,14 +1,6 @@
-class LogsController < ApplicationController
-  require "rest-client"
-
-  def index
-    @files = list_files
-  end
-
-  def show
-  end
-
-  private
+class GoogleDriveController < ApplicationController
+  before_action :authenticate_user!
+  require "google/apis/drive_v3"
 
   def list_files
     folder_id = current_user.google_drive_folder_id
@@ -20,9 +12,9 @@ class LogsController < ApplicationController
     drive_service = GoogleDriveService.new(current_user)
     files = drive_service.list_files_in_folder(folder_id)
 
-    files
-  rescue
-    {}
+    render json: { files: files }
+  rescue => e
+    render json: { error: e.message }, status: :unprocessable_entity
   end
 
 

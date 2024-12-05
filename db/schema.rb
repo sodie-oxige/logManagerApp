@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_02_053715) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_02_124126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,6 +28,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_02_053715) do
     t.string "uid"
     t.string "name"
     t.string "avatar"
+    t.string "access_token"
+    t.string "refresh_token"
+    t.datetime "token_expires_at"
+    t.string "google_drive_folder_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 end

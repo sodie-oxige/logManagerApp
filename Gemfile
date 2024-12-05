@@ -69,3 +69,7 @@ gem "omniauth"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
+
+gem "google-api-client", "~> 0.53.0"
+
+gem "rest-client", "~> 2.1"
