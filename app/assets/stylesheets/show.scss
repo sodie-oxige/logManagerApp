@@ -1,0 +1,40 @@
+@use "application" as *;
+
+@layer main{
+    #container{
+        display: flex;
+        flex-direction: column;
+
+        .content{
+            padding: 0.2rem 1rem;
+
+            &.tab_other,&.tab_雑談{
+                font-size: 0.8em;
+            }
+            &:not(.tab_main):not(.tab_メイン){
+                opacity: 0.7;
+                padding-left: 2rem;
+            }
+
+            span{
+                position: relative;
+                font-size: 0.7em;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: -0.5em;
+                    right: -0.5em;
+                    z-index: -1;
+                    height: 0.8em;
+                    opacity: 0.5;
+                    background-color: var(--color);
+                }
+            }
+
+            p{
+                font-size: 1.2em;
+            }
+        }
+    }
+}

@@ -1,2 +1,6 @@
-<h1>Logs#show</h1>
-<p>Find me in app/views/logs/show.html.erb</p>
+<%= stylesheet_link_tag :show, "data-turbo-track": "reload" %>
+<div id="container">
+    <% @contents.each do |content| %>
+        <%= render "content", {data: content} %>
+    <% end %>
+</div>

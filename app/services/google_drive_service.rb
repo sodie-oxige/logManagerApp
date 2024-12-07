@@ -22,4 +22,9 @@ class GoogleDriveService
       { id: file.id, name: file.name }
     end
   end
+
+  def get_content(file_id)
+    file = @service.get_file(file_id, download_dest: StringIO.new)
+    file.string
+  end
 end

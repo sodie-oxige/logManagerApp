@@ -1,0 +1,12 @@
+@use "application" as *;
+
+@layer main{
+    table{
+        table-layout: fixed;
+        width: 100%;
+
+        th:nth-of-type(1){
+            width: 10em;
+        }
+    }
+}
