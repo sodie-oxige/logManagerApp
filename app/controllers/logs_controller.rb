@@ -6,6 +6,7 @@ class LogsController < ApplicationController
   end
 
   def show
+    @id = params[:id]
   end
 
   private
@@ -19,10 +20,10 @@ class LogsController < ApplicationController
 
     drive_service = GoogleDriveService.new(current_user)
     files = drive_service.list_files_in_folder(folder_id)
-
     files
-  rescue
-    {}
+  rescue => e
+    pp "Error: #{e.message}"
+    []
   end
 
 

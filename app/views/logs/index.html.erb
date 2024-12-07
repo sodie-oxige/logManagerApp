@@ -1,5 +1,22 @@
-<h1>Logs#index</h1>
-<p>Find me in app/views/logs/index.html.erb</p>
+<% if @files.present? %>
 
-<%= @files || "" %>
-<%= @error_message || "" %>
+<table>
+    <thead>
+        <tr>
+            <th><%= t("log.date") %></th>
+            <th><%= t("log.name") %></th>
+            <th><%= t("log.participant") %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @files.each do |file| %>
+        <tr data-url="<%= log_path(file[:id]) %>">
+            <td></td>
+            <td><%= file[:name] %></td>
+            <td></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<% end %>

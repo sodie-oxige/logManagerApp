@@ -11,12 +11,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "logs#index"
-  get "logs/index"
-  get "logs/show"
+  get "logs" => "logs#index"
+  get "logs/show/:id" => "logs#show", as: "log"
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-
-  get "google_drive/list_files", to: "google_drive#list_files"
 end
