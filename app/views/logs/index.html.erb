@@ -1,0 +1,22 @@
+<% if @files.present? %>
+
+<table>
+    <thead>
+        <tr>
+            <th><%= t("log.date") %></th>
+            <th><%= t("log.name") %></th>
+            <th><%= t("log.participant") %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @files.each do |file| %>
+        <tr data-url="<%= log_path(file[:id]) %>">
+            <td></td>
+            <td><%= file[:name] %></td>
+            <td></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<% end %>

@@ -1,0 +1,6 @@
+<%= stylesheet_link_tag :show, "data-turbo-track": "reload" %>
+<div id="container">
+    <% @contents.each do |content| %>
+        <%= render "content", {data: content} %>
+    <% end %>
+</div>
