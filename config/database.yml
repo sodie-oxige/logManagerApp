@@ -22,11 +22,7 @@ production:
     port: 5432
     prepared_statements: false
     sslmode: verify-full
-    sslrootcert: <%= Tempfile.create(['supabase-cert', '.crt']) do |file|
-      file.write(ENV['SUPABASE_SSL_CERT'].gsub('\n', "\n"))
-      file.close
-      file.path
-    end %>
+    sslrootcert: <%= ENV["SUPABASE_SSL_CERT_PATH"] %>
   cache:
     <<: *primary_production
     database: log_manager_app_production_cache
