@@ -23,6 +23,16 @@ module LogManagerApp
     #
     config.time_zone = "Tokyo"
     config.i18n.default_locale = :ja
+
+    config.action_cable.mount_path = nil
+    config.active_storage.service = :null
+    config.active_job.queue_adapter = :inline
+    config.action_mailbox.ingress = :disabled
+    config.action_mailer.perform_deliveries = false
+    config.action_mailer.delivery_method = :test
+
+    config.assets.compile = true
+
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
