@@ -1,6 +1,6 @@
 @layer reset, base, main;
 
-$header-height: 60px;
+$header-height: 3rem;
 $footer-height: 0px;
 $base-color: light-dark(#f8f8f8, #333);
 $assort-color: light-dark(#333, #f8f8f8);
@@ -123,7 +123,7 @@ $assort-color: light-dark(#333, #f8f8f8);
         background-color: $base-color;
         color: $assort-color;
         height: 100%;
-        font-size: 20px;
+        font-size: min(4.5vmin, 20px);
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
@@ -136,7 +136,7 @@ $assort-color: light-dark(#333, #f8f8f8);
             border-bottom: solid thin $assort-color;
         }
         th, td{
-            padding: 0.1em 1em;
+            padding: 0.1em 0.5em;
         }
     }
 

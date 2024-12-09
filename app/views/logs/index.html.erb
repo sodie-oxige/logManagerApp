@@ -12,7 +12,7 @@
         <% @files.each do |file| %>
         <tr data-url="<%= log_path(file[:id]) %>">
             <td></td>
-            <td><%= file[:name] %></td>
+            <td><p><%= file[:name] %></p></td>
             <td></td>
         </tr>
         <% end %>
