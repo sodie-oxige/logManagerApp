@@ -1,0 +1,23 @@
+@layer reset, base, main;
+
+$header-height: 3rem;
+$footer-height: 0px;
+$base-color: light-dark(#f8f8f8, #333);
+$assort-color: light-dark(#333, #f8f8f8);
+
+$media-aspect-ratio: 0.75;
+@mixin sp {
+    @media screen and (max-aspect-ratio: $media-aspect-ratio) {
+        @content;
+    }
+}
+@mixin pc {
+    @media screen and (min-aspect-ratio: $media-aspect-ratio) {
+        @content;
+    }
+}
+
+@mixin flex{
+    display: flex;
+    align-items: center;
+}

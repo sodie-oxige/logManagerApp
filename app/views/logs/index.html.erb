@@ -1,6 +1,6 @@
 <% if @files.present? %>
 
-<table>
+<table id="pc_loglist" class="pc_only">
     <thead>
         <tr>
             <th><%= t("log.date") %></th>
@@ -18,5 +18,14 @@
         <% end %>
     </tbody>
 </table>
+
+<div id="sp_loglist" class="sp_only">
+    <% @files.each do |file| %>
+    <div class="loglist_container" data-url="<%= log_path(file[:id]) %>">
+        <span class="loglist_date"></span>
+        <p class="loglist_title"><%= file[:name] %></p>
+    </div>
+    <% end %>
+</div>
 
 <% end %>

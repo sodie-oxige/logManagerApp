@@ -1,18 +1,8 @@
-@layer reset, base, main;
-
-$header-height: 3rem;
-$footer-height: 0px;
-$base-color: light-dark(#f8f8f8, #333);
-$assort-color: light-dark(#333, #f8f8f8);
+@use "g" as *;
 
 @layer reset{
     *,*::before,*::after{box-sizing:border-box}html{-moz-text-size-adjust:none;-webkit-text-size-adjust:none;text-size-adjust:none}body,h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ul[role='list'],ol[role='list']{list-style:none}body{min-height:100vh;line-height:1.5}h1,h2,h3,h4,button,input,label{line-height:1.1}h1,h2,h3,h4{text-wrap:balance}a:not([class]){text-decoration-skip-ink:auto;color:currentColor}img,picture{max-width:100%;display:block}input,button,textarea,select{font:inherit}textarea:not([rows]){min-height:10em}:target{scroll-margin-block:5ex}
     *,*::before,*::after{position: relative;}
-}
-
-@mixin flex{
-    display: flex;
-    align-items: center;
 }
 
 @layer base{
@@ -142,6 +132,18 @@ $assort-color: light-dark(#333, #f8f8f8);
 
     [data-url]:has(:hover){
         background-color: rgb(128 128 128 / 0.5);
+    }
+
+    .sp_only{
+        @include pc{
+            display: none !important;
+        }
+    }
+
+    .pc_only{
+        @include sp{
+            display: none !important;
+        }
     }
 }
 
