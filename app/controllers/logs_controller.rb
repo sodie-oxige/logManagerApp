@@ -17,28 +17,11 @@ class LogsController < ApplicationController
   end
 
   def list_files
-    folder_id = current_user.google_drive_folder_id
-    if folder_id.blank?
-      folder_id = create_drive_folder("logManagerApp")
-      current_user.update(google_drive_folder_id: folder_id)
-    end
-
-    files = google_drive_service.list_files_in_folder(folder_id)
+    files = google_drive_service.list_files_in_folder
     files
   rescue => e
     pp "Error: #{e.message}"
     []
-  end
-
-  def create_drive_folder(folder_name)
-    metadata = Google::Apis::DriveV3::File.new(
-      name: folder_name,
-      mime_type: "application/vnd.google-apps.folder"
-    )
-    folder = google_drive_service.create_file(metadata, fields: "id")
-    folder.id
-  rescue => e
-    Rails.logger.error("Failed to create folder: #{e.message}")
   end
 
   def get_logcontent(id, index = 0)
