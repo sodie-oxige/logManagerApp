@@ -24,10 +24,9 @@
 
   <body>
     <header>
-      <h1 data-url="/">Log Manager App（仮）</h1>
+      <h1 data-url="/">LOG</h1>
       <% if user_signed_in? %>
-        <p>こんにちは、<%= current_user.name %>さん！</p>
-        <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <%= button_to "[#{current_user.name}] ログアウト", destroy_user_session_path, method: :delete %>
       <% end %>
     </header>
     
