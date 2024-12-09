@@ -2,12 +2,11 @@ class GoogleDriveService
   require "google/apis/drive_v3"
 
   def initialize(user)
-    folder_name = "logManagerApp"
-
     user.refresh_access_token
     @service = Google::Apis::DriveV3::DriveService.new
     @service.authorization = user.access_token
 
+    folder_name = "logManagerApp"
     query = "name = '#{folder_name}' and mimeType = 'application/vnd.google-apps.folder'"
     response = @service.list_files(q: query)
     if response.files.empty?
@@ -22,10 +21,34 @@ class GoogleDriveService
   end
 
   def list_files_in_folder
+    query = "'#{@folder.id}' in parents and name = 'setting.json'"
+    response = @service.list_files(q: query, fields: "files(id, name)")
+    setting_file = response.files.first
+    if setting_file.nil?
+      setting_data = []
+    else
+      setting_data = JSON.parse(get_content(setting_file.id))
+    end
+
     query = "'#{@folder.id}' in parents and mimeType = 'text/html'"
     response = @service.list_files(q: query, fields: "files(id, name)")
     response.files.map do |file|
-      { id: file.id, name: file.name }
+      setting = setting_data.find { |s| s["id"] == file.id }
+      if setting.nil?
+        {
+          id: file.id,
+          date: Date.new(2000, 1, 1),
+          name: file.name,
+          tag: ""
+        }
+      else
+        {
+          id: file.id,
+          date: Date.parse(setting["date"]),
+          name: setting["title"],
+          tag: setting["tag"]
+        }
+      end
     end
   end
 

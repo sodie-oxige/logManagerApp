@@ -130,7 +130,7 @@
         }
     }
 
-    [data-url]:has(:hover){
+    [data-url]:is(:hover, :has(:hover)){
         background-color: rgb(128 128 128 / 0.5);
     }
 
