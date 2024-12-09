@@ -50,7 +50,7 @@ class LogsController < ApplicationController
           color: p[:style].strip.match(/color:(#[\da-f]+);/)[1],
           tab: p.search("span")[0].text.strip.match(/\[(.+)\]/)[1],
           author: p.search("span")[1].text.strip,
-          comment: p.search("span")[2].text.strip
+          comment: p.search("span")[2].inner_html.strip
         }
       end
       @logcontent = {
