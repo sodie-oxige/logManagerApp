@@ -1,4 +1,4 @@
 <div class="content tab_<%= data[:tab] %>" style="--color:<%= data[:color] %>">
     <span><%= data[:author] %></span>
-    <p><%= data[:comment] %></p>
+    <p><%= sanitize data[:comment] %></p>
 </div>

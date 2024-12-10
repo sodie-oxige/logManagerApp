@@ -5,15 +5,15 @@
         <tr>
             <th><%= t("log.date") %></th>
             <th><%= t("log.name") %></th>
-            <th><%= t("log.participant") %></th>
+            <th><%= t("log.tag") %></th>
         </tr>
     </thead>
     <tbody>
         <% @files.each do |file| %>
         <tr data-url="<%= log_path(file[:id]) %>">
-            <td></td>
+            <td><%= file[:date] %></td>
             <td><p><%= file[:name] %></p></td>
-            <td></td>
+            <td><%= file[:tag] %></td>
         </tr>
         <% end %>
     </tbody>
@@ -22,8 +22,9 @@
 <div id="sp_loglist" class="sp_only">
     <% @files.each do |file| %>
     <div class="loglist_container" data-url="<%= log_path(file[:id]) %>">
-        <span class="loglist_date"></span>
+        <span class="loglist_date"><%= file[:date] %></span>
         <p class="loglist_title"><%= file[:name] %></p>
+        <span class="loglist_tags"><%= file[:tag] %></span>
     </div>
     <% end %>
 </div>
