@@ -15,6 +15,12 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        td .pc_loglist_tag_item{
+            list-style: none;
+            padding: 0 1em;
+            border: solid 1px gray;
+            border-radius: 0.7em;
+        }
     }
 
     #sp_loglist{
@@ -26,14 +32,28 @@
             width: 100%;
 
             &:not(:last-of-type){
-                border-bottom: solid thin;
-                border-image: linear-gradient(to right, transparent 10%, $assort-color 50%, transparent 90%);
-                border-image-slice: 1;
+                border-bottom: solid thin rgba(gray, 0.5);
             }
 
             .loglist_date{
                 font-size: 0.8em;
                 color: gray;
+            }
+
+            ul.loglist_tags{
+                margin: 0;
+                margin-top: 0.5rem;
+                padding-left: 1em;
+                display: flex;
+                gap: 0.5em;
+                font-size: 0.7em;
+
+                >li{
+                    list-style: none;
+                    padding: 0 1em;
+                    border: solid 1px gray;
+                    border-radius: 0.7em;
+                }
             }
         }
     }

@@ -13,7 +13,11 @@
         <tr data-url="<%= log_path(file[:id]) %>">
             <td><%= file[:date] %></td>
             <td><p><%= file[:name] %></p></td>
-            <td><%= file[:tag] %></td>
+            <td>
+                <% file[:tag].split(",").each do |tag| %>
+                    <span class="pc_loglist_tag_item"><%= tag.strip %></span>
+                <% end %>
+            </td>
         </tr>
         <% end %>
     </tbody>
@@ -24,7 +28,11 @@
     <div class="loglist_container" data-url="<%= log_path(file[:id]) %>">
         <span class="loglist_date"><%= file[:date] %></span>
         <p class="loglist_title"><%= file[:name] %></p>
-        <span class="loglist_tags"><%= file[:tag] %></span>
+        <ul class="loglist_tags">
+            <% file[:tag].split(",").each do |tag| %>
+                <li><%= tag.strip %></li>
+            <% end %>
+        </ul>
     </div>
     <% end %>
 </div>
