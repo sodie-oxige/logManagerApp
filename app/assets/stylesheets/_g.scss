@@ -17,7 +17,21 @@ $media-aspect-ratio: 0.75;
     }
 }
 
+@mixin hover{
+    @include sp{
+        &:active{
+            @content;
+        }
+    }
+    @include pc{
+        &:hover{
+            @content;
+        }
+    }
+}
+
 @mixin flex{
     display: flex;
     align-items: center;
+    justify-content: center;
 }

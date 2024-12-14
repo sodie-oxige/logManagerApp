@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "log_#{file[:id]}" do %>
+    <div class="loglist_container">
+        <div class="loglist_container_main" data-url="<%= log_path(file[:id]) %>" data-frame="false">
+            <span class="loglist_date"><%= file[:date] %></span>
+            <p class="loglist_title"><%= file[:title] %></p>
+            <ul class="loglist_tags">
+                <% file[:tag].split(",").each do |tag| %>
+                    <li><%= tag.strip %></li>
+                <% end %>
+            </ul>
+        </div>
+        <%= link_to edit_log_path(file[:id]), class: "loglist_container_button" do %>
+            <span>🖋</span>
+        <% end %>
+    </div>
+<% end %>

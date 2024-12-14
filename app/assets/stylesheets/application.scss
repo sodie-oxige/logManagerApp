@@ -130,19 +130,9 @@
         }
     }
 
-    [data-url]:is(:hover, :has(:hover)){
-        background-color: rgb(128 128 128 / 0.5);
-    }
-
-    .sp_only{
-        @include pc{
-            display: none !important;
-        }
-    }
-
-    .pc_only{
-        @include sp{
-            display: none !important;
+    a, [data-url]{
+        @include hover{
+            filter: brightness(0.8);
         }
     }
 }

@@ -19,7 +19,7 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag action_name, "data-turbo-track": "reload" %>
+    <%= begin stylesheet_link_tag action_name, "data-turbo-track": "reload" end rescue nil %>
     <%= javascript_importmap_tags %>
   </head>
 
