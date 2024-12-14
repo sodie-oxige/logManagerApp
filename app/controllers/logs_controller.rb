@@ -2,7 +2,7 @@ class LogsController < ApplicationController
   require "nokogiri"
 
   def index
-    @files = list_files
+    @files = list_files.sort { |a, b| b[:date] <=> a[:date] }
   end
 
   def edit

@@ -130,7 +130,7 @@
         }
     }
 
-    a, [data-url]{
+    a, button, input, [data-url]{
         @include hover{
             filter: brightness(0.8);
         }
