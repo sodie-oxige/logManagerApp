@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "log_#{@file.file_id}" do %>
+    <%= form_with model: @file, url: update_log_path(@file.file_id), class: "loglist_container" do |f| %>
+        <div class="loglist_container_main">
+            <span class="loglist_date"><%= f.date_field :date %></span>
+            <p class="loglist_title"><%= f.text_field :title %></p>
+            <ul class="loglist_tags">
+                <%= f.text_field :tag %>
+            </ul>
+        </div>
+        <%= f.submit "✓", class: "loglist_container_button" %>
+    <% end %>
+<% end %>

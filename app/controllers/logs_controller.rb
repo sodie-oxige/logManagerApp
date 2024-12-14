@@ -2,7 +2,29 @@ class LogsController < ApplicationController
   require "nokogiri"
 
   def index
-    @files = list_files
+    @files = list_files.sort { |a, b| b[:date] <=> a[:date] }
+  end
+
+  def edit
+    file_data = google_drive_service.file_data(params[:id])
+    @file = Logfile.new(
+      file_id: file_data[:id],
+      title: file_data[:title],
+      date: file_data[:date],
+      tag: file_data[:tag],
+    )
+  end
+
+  def update
+    log_params = params.require(:logfile).permit(:date, :title, :tag)
+    set = {
+      id: params[:id],
+      date: log_params[:date],
+      title: log_params[:title],
+      tag: log_params[:tag]
+    }
+    google_drive_service.setting_save(set)
+    render partial: "item", locals: { file: log_params.merge(id: params[:id]).to_h }
   end
 
   def show
@@ -17,11 +39,7 @@ class LogsController < ApplicationController
   end
 
   def list_files
-    files = google_drive_service.list_files_in_folder
-    files
-  rescue => e
-    pp "Error: #{e.message}"
-    []
+    google_drive_service.list_files_in_folder
   end
 
   def get_logcontent(id, index = 0)

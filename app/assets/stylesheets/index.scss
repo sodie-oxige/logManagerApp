@@ -1,39 +1,62 @@
 @use "_g" as *;
 
-@layer main{
-    table#pc_loglist{
-        table-layout: fixed;
-        width: 100%;
-
-        th:nth-of-type(1){
-            width: 8em;
-        }
-
-        td p{
-            display: -webkit-inline-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-    }
-
-    #sp_loglist{
+@layer main {
+    #loglist {
         @include flex;
         flex-direction: column;
 
-        .loglist_container{
-            padding: 1em 0.5rem;
+        turbo-frame {
             width: 100%;
+        }
 
-            &:not(:last-of-type){
-                border-bottom: solid thin;
-                border-image: linear-gradient(to right, transparent 10%, $assort-color 50%, transparent 90%);
-                border-image-slice: 1;
+        .loglist_container {
+            margin: 0.1em;
+            @include flex;
+            align-items: stretch;
+            width: 100%;
+            border: solid thin rgba(gray, 0.2);
+            border-radius: 1em;
+            overflow: hidden;
+
+            .loglist_container_main {
+                flex: 1;
+                padding: 1em;
+                background-color: $base-color;
+
+                .loglist_date {
+                    font-size: 0.8em;
+                    color: gray;
+                }
+
+                ul.loglist_tags {
+                    margin: 0;
+                    margin-top: 0.5rem;
+                    padding-left: 1em;
+                    display: flex;
+                    gap: 0.5em;
+                    font-size: 0.7em;
+
+                    >li {
+                        list-style: none;
+                        padding: 0 1em;
+                        border: solid 1px gray;
+                        border-radius: 0.7em;
+                    }
+                }
             }
 
-            .loglist_date{
-                font-size: 0.8em;
-                color: gray;
+            .loglist_container_button {
+                @include flex;
+                width: 3em;
+                background-color: color-mix(in srgb, blue 15%, $base-color);
+                color: $assort-color;
+                text-decoration: none;
+            }
+
+            input.loglist_container_button {
+                border: none;
+                outline: none;
+                background-color: color-mix(in srgb, green 15%, $base-color);
             }
         }
     }

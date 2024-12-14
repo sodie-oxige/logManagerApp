@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "logs#index"
   get "logs" => "logs#index"
-  get "logs/show/:id" => "logs#show", as: "log"
+  get "logs/:id" => "logs#show", as: "log"
+  get "logs/:id/edit" => "logs#edit", as: "edit_log"
+  post "logs/:id" => "logs#update", as: "update_log"
+
+  resources :x
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"

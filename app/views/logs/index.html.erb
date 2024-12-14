@@ -1,32 +1,7 @@
 <% if @files.present? %>
 
-<table id="pc_loglist" class="pc_only">
-    <thead>
-        <tr>
-            <th><%= t("log.date") %></th>
-            <th><%= t("log.name") %></th>
-            <th><%= t("log.tag") %></th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @files.each do |file| %>
-        <tr data-url="<%= log_path(file[:id]) %>">
-            <td><%= file[:date] %></td>
-            <td><p><%= file[:name] %></p></td>
-            <td><%= file[:tag] %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-
-<div id="sp_loglist" class="sp_only">
-    <% @files.each do |file| %>
-    <div class="loglist_container" data-url="<%= log_path(file[:id]) %>">
-        <span class="loglist_date"><%= file[:date] %></span>
-        <p class="loglist_title"><%= file[:name] %></p>
-        <span class="loglist_tags"><%= file[:tag] %></span>
-    </div>
-    <% end %>
+<div id="loglist">
+    <%= render partial: "item", collection: @files, as: "file" %>
 </div>
 
 <% end %>
