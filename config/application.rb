@@ -33,14 +33,6 @@ module LogManagerApp
 
     config.assets.compile = true
 
-    config.before_configuration do
-      if ENV["SUPABASE_SSL_CERT"].present?
-        cert_path = Rails.root.join("tmp", "supabase-cert.crt")
-        File.write(cert_path, ENV["SUPABASE_SSL_CERT"].gsub('\n', "\n"))
-        ENV["SUPABASE_SSL_CERT_PATH"] = cert_path.to_s
-      end
-    end
-
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
