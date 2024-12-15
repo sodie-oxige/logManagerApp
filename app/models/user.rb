@@ -30,12 +30,15 @@ class User < ApplicationRecord
         scope: "https://www.googleapis.com/auth/drive.file"
       )
 
-      credentials.fetch_access_token!
-      self.update(
-        access_token: credentials.access_token,
-        token_expires_at: Time.current + credentials.expires_in.seconds
-      )
-      self.update(access_token: credentials.access_token)
+      begin
+        credentials.fetch_access_token!
+        self.update(
+          access_token: credentials.access_token,
+          token_expires_at: Time.current + credentials.expires_in.seconds
+        )
+      rescue
+        self.destroy()
+      end
     end
   end
 end

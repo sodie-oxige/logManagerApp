@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   get "logs/:id/edit" => "logs#edit", as: "edit_log"
   post "logs/:id" => "logs#update", as: "update_log"
 
-  resources :x
-
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"
   }

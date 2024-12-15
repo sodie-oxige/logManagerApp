@@ -104,8 +104,6 @@ class GoogleDriveService
   end
 
   def setting_data
-    pp "~~~~~~~~~~~~~~~"
-    pp @setting[:data]
     read_or_create_setting_file if @setting[:data].nil?
     @setting[:data]
   end
