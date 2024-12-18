@@ -28,13 +28,27 @@
                     color: gray;
                 }
 
+                .loglist_title{
+                    input{
+                        width: 100%;
+                    }
+                }
+
+                .loglist_tags{
+                    font-size: 0.7em;
+
+                    input{
+                        margin: 0;
+                        width: 100%;
+                    }
+                }
                 ul.loglist_tags {
                     margin: 0;
+                    padding: 0;
                     margin-top: 0.5rem;
                     padding-left: 1em;
                     display: flex;
                     gap: 0.5em;
-                    font-size: 0.7em;
 
                     >li {
                         list-style: none;

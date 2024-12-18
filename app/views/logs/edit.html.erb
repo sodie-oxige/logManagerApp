@@ -3,9 +3,9 @@
         <div class="loglist_container_main">
             <span class="loglist_date"><%= f.date_field :date %></span>
             <p class="loglist_title"><%= f.text_field :title %></p>
-            <ul class="loglist_tags">
+            <div class="loglist_tags">
                 <%= f.text_field :tag %>
-            </ul>
+            </div>
         </div>
         <%= f.submit "✓", class: "loglist_container_button" %>
     <% end %>

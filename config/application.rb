@@ -26,7 +26,7 @@ module LogManagerApp
 
     config.action_cable.mount_path = nil
     config.active_storage.service = :null
-    config.active_job.queue_adapter = :inline
+    config.active_job.queue_adapter = :async
     config.action_mailbox.ingress = :disabled
     config.action_mailer.perform_deliveries = false
     config.action_mailer.delivery_method = :test
