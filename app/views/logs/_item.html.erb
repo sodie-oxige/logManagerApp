@@ -9,7 +9,7 @@
                 <% end %>
             </ul>
         </div>
-        <%= link_to edit_log_path(file[:id]), class: "loglist_container_button" do %>
+        <%= link_to edit_log_path(id: file[:id], date: file[:date], title: file[:title], tag: file[:tag]), class: "loglist_container_button" do %>
             <span>🖋</span>
         <% end %>
     </div>

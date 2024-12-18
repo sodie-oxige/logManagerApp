@@ -6,12 +6,12 @@ class LogsController < ApplicationController
   end
 
   def edit
-    file_data = google_drive_service.file_data(params[:id])
+    pp params
     @file = Logfile.new(
-      file_id: file_data[:id],
-      title: file_data[:title],
-      date: file_data[:date],
-      tag: file_data[:tag],
+      file_id: params[:id],
+      title: params[:title],
+      date: params[:date],
+      tag: params[:tag],
     )
   end
 
@@ -23,8 +23,8 @@ class LogsController < ApplicationController
       title: log_params[:title],
       tag: log_params[:tag]
     }
-    google_drive_service.setting_save(set)
     render partial: "item", locals: { file: log_params.merge(id: params[:id]).to_h }
+    DriveSaveJob.perform_later(:setting, current_user, set)
   end
 
   def show
