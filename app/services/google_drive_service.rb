@@ -52,9 +52,16 @@ class GoogleDriveService
     end
   end
 
-  def get_content(file_id)
-    file = @service.get_file(file_id, download_dest: StringIO.new)
-    file.string
+  def get_content(file_id, force = false)
+    download_date = Time.current.strftime("%Y%m%d")
+    search_file_path = Dir[Rails.root.join("tmp", "logfile", "*#{file_id}.tmp")].first
+    new_file_path = Rails.root.join("tmp", "logfile", "#{download_date}_#{file_id}.tmp")
+    if force || search_file_path.blank?
+      @service.get_file(file_id, download_dest: new_file_path)
+    else
+      File.rename(search_file_path, new_file_path)
+    end
+    File.read(new_file_path)
   end
 
   def setting_save(params)
@@ -97,7 +104,7 @@ class GoogleDriveService
       upload_io = StringIO.new(@setting[:data].to_json)
       @setting[:file] = @service.create_file(file_metadata, upload_source: upload_io, content_type: "application/json")
     else
-      @setting[:data] = JSON.parse(get_content(response.files.first.id), symbolize_names: true)
+      @setting[:data] = JSON.parse(get_content(response.files.first.id, true), symbolize_names: true)
       @setting[:file] = response.files.first
     end
     @setting
