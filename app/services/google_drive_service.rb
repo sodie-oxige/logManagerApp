@@ -53,6 +53,7 @@ class GoogleDriveService
   end
 
   def get_content(file_id, force = false)
+    Rails.logger.info("get_content(file_id: #{file_id})")
     download_date = Time.current.strftime("%Y%m%d")
     search_file_path = Dir[Rails.root.join("tmp", "logfile", "*#{file_id}.tmp")].first
     new_file_path = Rails.root.join("tmp", "logfile", "#{download_date}_#{file_id}.tmp")
@@ -61,14 +62,14 @@ class GoogleDriveService
     else
       File.rename(search_file_path, new_file_path)
     end
+    if force && search_file_path.present?
+    end
     File.read(new_file_path)
   end
 
   def setting_save(params)
     setting = setting_data
-    pp params[:id]
     setting[params[:id]] = params
-    pp setting
     @setting[:data] = setting
     file = Google::Apis::DriveV3::File.new(name: "setting.json")
     upload_io = StringIO.new(setting.to_json)

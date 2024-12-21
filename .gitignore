@@ -27,6 +27,9 @@
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
+/tmp/logfile/*
+!/tmp/logfile/
+!/tmp/logfile/.keep
 
 /public/assets
 

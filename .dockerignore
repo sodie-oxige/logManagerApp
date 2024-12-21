@@ -29,6 +29,8 @@
 !/storage/.keep
 /tmp/storage/*
 !/tmp/storage/.keep
+/tmp/logfile/*
+!/tmp/logfile/.keep
 
 # Ignore assets.
 /node_modules/

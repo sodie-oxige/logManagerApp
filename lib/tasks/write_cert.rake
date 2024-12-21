@@ -4,9 +4,9 @@ namespace :cert do
     if ENV["SUPABASE_SSL_CERT"].present?
       cert_path = Rails.root.join("tmp", "supabase-cert.crt")
       File.write(cert_path, ENV["SUPABASE_SSL_CERT"].gsub('\n', "\n"))
-      puts "Certificate written to: #{cert_path}"
+      pp "Certificate written to: #{cert_path}"
     else
-      puts "SUPABASE_SSL_CERT is not set."
+      raise "Environment variables not found: SUPABASE_SSL_CERT"
     end
   end
 end
